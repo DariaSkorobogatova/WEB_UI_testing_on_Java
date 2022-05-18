@@ -1,17 +1,20 @@
-package Homework_6;
+package Homework_6_7;
 
-
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.junit.jupiter.api.DisplayName;
+import java.io.File;
 
-
+@Story("Работа с сайтом ororo.tv")
 public class OroroTests extends AbstractTest {
 
     @Test
-    //поменять уровень языка на intermediate, проверить корректность изменения, вернуть обратно уровень beginner
+    @DisplayName("Изменение уровня английского")
+    @Description("Изменить уровень языка на intermediate, проверить корректность изменения, вернуть обратно уровень beginner")
+    @Link("https://docs.google.com/spreadsheets/d/1h0fbaQCH-0nVD85U1dWNIX9wKw4e__rAx7wwRMVEYdo/edit?usp=sharing")
+    @Severity(SeverityLevel.NORMAL)
     void changeUserSettings() throws InterruptedException {
         new MainMenu(getDriver())
                 .userMenu();
@@ -23,13 +26,17 @@ public class OroroTests extends AbstractTest {
         String s = new PersonalSettings(getDriver())
                 .curLevel();
         Assertions.assertEquals("Intermediate", s);
+        File file = MyUtils.makeScreenshot(getDriver(),"afterChangeToIntermediate_screenshot" + System.currentTimeMillis() + ".png");
         Thread.sleep(3000);
         new PersonalSettings(getDriver())
                 .low();
     }
 
     @Test
-    // искать сериал Друзья, убедиться, что он есть в выдаче
+    @DisplayName("Поиск сериала по названию")
+    @Description("Вбить в поиск название сериала Друзья, найти его в результатах выдачи")
+    @Link("https://docs.google.com/spreadsheets/d/1h0fbaQCH-0nVD85U1dWNIX9wKw4e__rAx7wwRMVEYdo/edit?usp=sharing")
+    @Severity(SeverityLevel.CRITICAL)
     void searchShowName()  {
         new MainMenu(getDriver())
                 .searchField();
@@ -41,7 +48,10 @@ public class OroroTests extends AbstractTest {
     }
 
     @Test
-    // отсортировать сериалы по рейтингу
+    @DisplayName("Сортировка списка сериалов")
+    @Description("Отсортировать список сериалов по рейтингу")
+    @Link("https://docs.google.com/spreadsheets/d/1h0fbaQCH-0nVD85U1dWNIX9wKw4e__rAx7wwRMVEYdo/edit?usp=sharing")
+    @Severity(SeverityLevel.MINOR)
     void sortShows() {
         String s = new SortElement(getDriver())
                 .sorting();
@@ -49,7 +59,9 @@ public class OroroTests extends AbstractTest {
     }
 
     @Test
-        // сменить язык на английский, потом вернуть русский
+    @DisplayName("Изменение языка сайта")
+    @Description("Сменить язык сайта на английский, затем вернуть русский")
+    @Severity(SeverityLevel.CRITICAL)
     void changeLang() {
         String s = new MainMenu(getDriver())
                 .changeLangEng();
@@ -59,13 +71,17 @@ public class OroroTests extends AbstractTest {
     }
 
     @Test
-        // наличие баннера
+    @DisplayName("Наличие баннера на странице")
+    @Description("Проверка наличия баннера на странице после авторизации пользователя")
+    @Severity(SeverityLevel.NORMAL)
     void banner() {
         Assertions.assertEquals(getDriver().findElements(By.xpath("//*[@class='active-banner']")).size(), 1);
     }
 
     @Test
-        // проверить, что меню пользователя содержит все необходимые элементы
+    @DisplayName("Пункты меню пользователя")
+    @Description("Проверить, что меню пользователя содержит все необходимые пункты")
+    @Severity(SeverityLevel.CRITICAL)
     void userMenu() {
         Assertions.assertEquals(getDriver().findElements(By.xpath("//*[@class='icon-subscription']")).size(), 1);
         Assertions.assertEquals(getDriver().findElements(By.xpath("//*[@class='icon-dictionary']")).size(), 1);

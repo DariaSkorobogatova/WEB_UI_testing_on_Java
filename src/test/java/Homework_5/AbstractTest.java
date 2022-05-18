@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
-
+@Disabled
 public abstract class AbstractTest {
 
     private static WebDriver driver;
@@ -50,7 +50,6 @@ public abstract class AbstractTest {
         }
     }
     @AfterEach
-     // переход на главную страницу
     void mainPage(){
         WebElement siteLogo = driver.findElement(By.xpath("//a[@class='site-logo']"));
         siteLogo.click();

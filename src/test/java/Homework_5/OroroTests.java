@@ -2,11 +2,12 @@ package Homework_5;
 
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-
+@Disabled
 public class OroroTests extends AbstractTest{
 
     @Test
@@ -119,7 +120,4 @@ public class OroroTests extends AbstractTest{
         Assertions.assertEquals(getDriver().findElements(By.xpath("//*[@class='icon-gift']")).size(), 1);
         Assertions.assertEquals(getDriver().findElements(By.xpath("//*[@class='icon-referral']")).size(), 1);
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-package Homework_6;
+package Homework_6_7;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
